@@ -65,7 +65,7 @@
                                         </div>
                                         <div class="fb-like" data-share="true" data-width="450" data-show-faces="true">
                                         </div>
-                                        <form class="user">
+                                        <form id="user" class="user">
                                             <div class="form-group">
                                                 <!--input type="email" class="form-control form-control-user" id="txt_usuario"
                                                     aria-describedby="emailHelp" placeholder="Ingrese Usuario..."-->

@@ -6,6 +6,14 @@
 
 
 $(document).ready(function () {
+    
+     $(document).on('submit', '#user', function(event) {
+    event.preventDefault();
+  
+    alert('page did not reload');
+  });
+    
+    
     $('#btn_acceder').click(function () {
         debugger;
         console.log('press...');
