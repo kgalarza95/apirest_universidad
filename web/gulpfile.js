@@ -1,23 +1,23 @@
 "use strict";
 
 // Load plugins
-const autoprefixer = require("gulp-autoprefixer");
-const browsersync = require("browser-sync").create();
-const cleanCSS = require("gulp-clean-css");
-const del = require("del");
-const gulp = require("gulp");
-const header = require("gulp-header");
-const merge = require("merge-stream");
-const plumber = require("gulp-plumber");
-const rename = require("gulp-rename");
-const sass = require("gulp-sass");
-const uglify = require("gulp-uglify");
+var autoprefixer = require("gulp-autoprefixer");
+var browsersync = require("browser-sync").create();
+var cleanCSS = require("gulp-clean-css");
+var del = require("del");
+var gulp = require("gulp");
+var header = require("gulp-header");
+var merge = require("merge-stream");
+var plumber = require("gulp-plumber");
+var rename = require("gulp-rename");
+var sass = require("gulp-sass");
+var uglify = require("gulp-uglify");
 
 // Load package.json for banner
-const pkg = require('./package.json');
+var pkg = require('./package.json');
 
 // Set the banner content
-const banner = ['/*!\n',
+var banner = ['/*!\n',
   ' * Start Bootstrap - <%= pkg.title %> v<%= pkg.version %> (<%= pkg.homepage %>)\n',
   ' * Copyright 2013-' + (new Date()).getFullYear(), ' <%= pkg.author %>\n',
   ' * Licensed under <%= pkg.license %> (https://github.com/StartBootstrap/<%= pkg.name %>/blob/master/LICENSE)\n',
@@ -131,9 +131,9 @@ function watchFiles() {
 }
 
 // Define complex tasks
-const vendor = gulp.series(clean, modules);
-const build = gulp.series(vendor, gulp.parallel(css, js));
-const watch = gulp.series(build, gulp.parallel(watchFiles, browserSync));
+var vendor = gulp.series(clean, modules);
+var build = gulp.series(vendor, gulp.parallel(css, js));
+var watch = gulp.series(build, gulp.parallel(watchFiles, browserSync));
 
 // Export tasks
 exports.css = css;
