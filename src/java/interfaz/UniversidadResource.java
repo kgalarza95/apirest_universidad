@@ -5,7 +5,6 @@
  */
 package interfaz;
 
-
 import com.google.gson.Gson;
 import controlador.ctrlUsuario;
 import entidades.JSONResponse;
@@ -16,6 +15,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
+import javax.ws.rs.POST;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
@@ -29,11 +29,11 @@ public class UniversidadResource {
 
     @Context
     private UriInfo context;
-    
+
     private ctrlUsuario opUsuario;
     private JSONResponse json = new JSONResponse();
-   private final Gson gson = new Gson();
-    
+    private final Gson gson = new Gson();
+
     /**
      * Creates a new instance of UniversidadResource
      */
@@ -44,23 +44,55 @@ public class UniversidadResource {
     @Path("/getUsuarios")
     @Produces(MediaType.APPLICATION_JSON)
     public String getUsuarios() {
-        opUsuario = new ctrlUsuario();     
+        opUsuario = new ctrlUsuario();
         json = opUsuario.consultarUsuarios();
         return gson.toJson(json);
     }
-    
+
     @GET
     @Path("/getUsuario")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getUsuario(@QueryParam("usuario") String usuario, 
+    public String getUsuario(@QueryParam("usuario") String usuario,
             @QueryParam("contrasenia") String contrasenia) {
-        opUsuario = new ctrlUsuario();     
+        opUsuario = new ctrlUsuario();
         json = opUsuario.consultarUsuario(usuario, contrasenia);
         return gson.toJson(json);
     }
-    
+
+    @GET//READ
+    @Path("/getUsuarioRegistrado")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getUsuarioRegistrado(@QueryParam("usuario") String usuario) {
+        opUsuario = new ctrlUsuario();
+        json = opUsuario.consultarUsuario(usuario);
+        return gson.toJson(json);
+    }
+
+    @GET//CREATE
+    @Path("/postUsuario")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String postUsuario(@QueryParam("nombres") String nombres,
+            @QueryParam("apellidos") String apellidos,
+            @QueryParam("usuario") String usuario,
+            @QueryParam("contrasenia") String contrasenia) {
+        opUsuario = new ctrlUsuario();
+        json = opUsuario.crearUsuario(nombres, apellidos, usuario, contrasenia);
+        return gson.toJson(json);
+    }
+
+    @GET//CREATE
+    @Path("/updatePass")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String updatePass(@QueryParam("usuario") String usuario,
+            @QueryParam("contrasenia") String contrasenia) {
+        opUsuario = new ctrlUsuario();
+        json = opUsuario.updatePass(usuario, contrasenia);
+        return gson.toJson(json);
+    }
+
     /**
      * Retrieves representation of an instance of interfaz.UniversidadResource
+     *
      * @return an instance of java.lang.String
      */
 //    @GET
@@ -69,9 +101,9 @@ public class UniversidadResource {
 //        //TODO return proper representation object
 //        throw new UnsupportedOperationException();
 //    }
-
     /**
      * PUT method for updating or creating an instance of UniversidadResource
+     *
      * @param content representation for the resource
      */
     @PUT
