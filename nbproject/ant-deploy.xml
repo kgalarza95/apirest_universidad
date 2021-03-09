@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <!--
 DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
 
@@ -38,6 +39,8 @@ made subject to such option by the copyright holder.
 
 Contributor(s):
 -->
+=======
+>>>>>>> APIS_REST
 <project default="-deploy-ant" basedir=".">
     <target name="-init-cl-deployment-env" if="deploy.ant.enabled">
         <property file="${deploy.ant.properties.file}" />
@@ -47,7 +50,11 @@ Contributor(s):
         <tempfile prefix="gfv3" property="gfv3.password.file" destdir="${java.io.tmpdir}"/>  <!-- do not forget to delete this! -->
         <echo message="AS_ADMIN_PASSWORD=${gfv3.password}" file="${gfv3.password.file}"/>
     </target>
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> APIS_REST
     <target name="-parse-sun-web" depends="-init-cl-deployment-env" if="sun.web.present">
         <tempfile prefix="gfv3" property="temp.sun.web" destdir="${java.io.tmpdir}"/>
         <copy file="${deploy.ant.docbase.dir}/WEB-INF/sun-web.xml" tofile="${temp.sun.web}"/>
